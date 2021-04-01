@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.ejb.Stateless;
+
+@Stateless
 public class ValidationService {
 
 	private static List<ToDoDetails> details = new ArrayList<ToDoDetails>();

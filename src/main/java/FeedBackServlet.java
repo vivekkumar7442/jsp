@@ -33,6 +33,7 @@ public class FeedBackServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
@@ -63,9 +64,20 @@ public class FeedBackServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+    @Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		System.out.println(request.getParameter("userName"));
+
+		System.out.println(request.getAttribute("userName"));
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonString = mapper.writeValueAsString(new FeedBackDetails());
+		System.out.println(jsonString);
+
+		response.getWriter().write(jsonString);
+		
+		request.getRequestDispatcher("/WEB-INF/views/feedback.jsp").forward(request, response);
+
 	}
 
 }

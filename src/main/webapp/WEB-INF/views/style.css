@@ -1,0 +1,12 @@
+h1 {
+  color: black;
+  background-color: green;
+  font-style: italic;
+  padding: 50px 50px 50px 50px;
+  margin: 50px 50px 50px 50px;
+  font-family: cursive;
+}
+
+h2 {
+  color: green;
+}

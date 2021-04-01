@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.text.ParseException;
 
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,7 +20,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class StaffLogin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	ValidationService validationService = new ValidationService();
+	@EJB
+	ValidationService validationService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()

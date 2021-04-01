@@ -69,7 +69,7 @@
 
 	<div id="updateFeedbackDive" class="container" align="center">
 
-		<form name="feedbackUp">
+		<!-- <form name="feedbackUp"> -->
 			<div class="row">
 				<div class="col-md-6">
 					<label>Name</label> <input type="text" name="name" id="username"
@@ -124,14 +124,14 @@
 
 				<br> <input type="submit" class="btn btn-success" id="submitid"
 					value="Submit" /> <input type="submit" class="btn btn-success"
-					value="Save" /> <input type=button id="cancelbutton"
+					value="Save" id="saveId" /> <input type=button id="cancelbutton"
 					class="btn btn-success" value="Cancel" />
 
 
 
 
 			</fieldset>
-		</form>
+<!-- 		</form> -->
 	</div>
 
 
@@ -182,13 +182,28 @@
 					  $("#cancelbutton").click(function(){
 						  $("#updateFeedbackDive").hide();
 					  });
+					  
+					  $("#saveId").click(function(){
+						  
+						  var userNmae=$('#username').val(); 
+						  $('#mobilenumber').val(); 
+						  $('#feedbackcontent').val(); 
+						  $('#feedbacksubject').val(); 
+						  $('#feedbackcomment').val(); 
+						  $('#oicid').val(); 
+						  $('#remarks').val(); 
+						  alert($('#username').val());
+						  var data={userName:userNmae}
+						  postUpdate(data);
+
+						});
 				 
 			
 		});
 		
 		function test(id) {
 			alert(id);
-			$.get("http://localhost:8080/FeedBackServlet?feedbackId="+id, function(data, status){
+			$.get("http://localhost:8080/first-web-application/FeedBackServlet?feedbackId="+id, function(data, status){
 				var  dat = JSON.parse(data);
 				alert(dat);
 				  $('#username').val(dat.userDetail.name); 
@@ -202,6 +217,18 @@
 
 			  
 			  });
+		}
+		
+		function postUpdate(data) {
+			alert(data);
+			  var posting = $.post( "http://localhost:8080/first-web-application/FeedBackServlet", data);
+			  
+			  $.post("http://localhost:8080/first-web-application/FeedBackServlet", data, function(result){
+				  var myJSON = JSON.stringify(result);
+				  alert(myJSON);
+				  });
+
+
 		}
 		
 
